@@ -10,14 +10,19 @@ class gitbookTest extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.left}>
+        <View style={styles.navBar}>
+          <Text>
+            NavBar
+          </Text>
         </View>
-        <View style={styles.right}>
-          <View style={styles.rightTop}>
-
+        <View style={styles.body}>
+          <View style={styles.left}>
           </View>
-          <View style={styles.rightBottom}>
-
+          <View style={styles.right}>
+            <View style={styles.rightTop}>
+            </View>
+            <View style={styles.rightBottom}>
+            </View>
           </View>
         </View>
       </View>
@@ -29,6 +34,16 @@ class gitbookTest extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+  },
+  navBar: {
+    height: 60,
+    backgroundColor: '#B0B0B0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  body: {
+    flex: 1,
     flexDirection: 'row',
   },
   left: {
@@ -36,17 +51,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'red'
   },
   right: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
   },
   rightTop: {
     flex: 1,
-    backgroundColor: 'yellow'
+    backgroundColor: 'blue'
   },
   rightBottom: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'blue'
+    flex: 2,
+    backgroundColor: 'yellow'
   }
 
 });
