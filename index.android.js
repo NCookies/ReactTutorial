@@ -10,26 +10,41 @@ class gitbookTest extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.navBar}>
-          <Text>
-            NavBar
-          </Text>
-        </View>
-        <View style={styles.body}>
-          <View style={styles.left}>
-          </View>
-          <View style={styles.right}>
-            <View style={styles.rightTop}>
-            </View>
-            <View style={styles.rightBottom}>
-            </View>
-          </View>
-        </View>
+        <NavBar />
+        <Body />
       </View>
     );
   }
 }
 
+class NavBar extends Component {
+  render() {
+    return (
+      <View style={styles.navBar}>
+        <Text>
+          NavBar
+        </Text>
+      </View>
+    )
+  }
+}
+
+class Body extends Component {
+  render() {
+    return (
+      <View style={styles.body}>
+        <View style={styles.left}>
+        </View>
+        <View style={styles.right}>
+          <View style={styles.rightTop}>
+          </View>
+          <View style={styles.rightBottom}>
+          </View>
+        </View>
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
