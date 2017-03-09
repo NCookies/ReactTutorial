@@ -1,12 +1,54 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text } from 'react-native';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
 
-class HelloWorldApp extends Component {
+class gitbookTest extends Component {
   render() {
     return (
-      <Text>Hello world!</Text>
+      <View style={styles.container}>
+        <View style={styles.left}>
+        </View>
+        <View style={styles.right}>
+          <View style={styles.rightTop}>
+
+          </View>
+          <View style={styles.rightBottom}>
+
+          </View>
+        </View>
+      </View>
     );
   }
 }
 
-AppRegistry.registerComponent('ReactTutorial', () => HelloWorldApp);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  left: {
+    flex: 1,
+    backgroundColor: 'red'
+  },
+  right: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  rightTop: {
+    flex: 1,
+    backgroundColor: 'yellow'
+  },
+  rightBottom: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'blue'
+  }
+
+});
+
+AppRegistry.registerComponent('ReactTutorial', () => gitbookTest);
