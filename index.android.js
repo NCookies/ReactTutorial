@@ -11,7 +11,45 @@ import {
 console.log('check')
 
 
-class ReactTutorial extends Component {
+class TodoItem extends Component {
+  completeTodo(index) {
+    let todos = this.state.todos
+    todos[index].complete = !todos[index].complete
+    this.setState({
+      todos: todos,
+    })
+  }
+
+  deleteTodo (index) {
+    let todos = this.state.todos
+    todos.splice(index, 1)
+    this.setState({
+      todos: todos,
+    })
+  }
+
+
+  render() {
+    let todoItem = this.props.item
+    console.log(this.props)
+    let index = this.props.index
+    return(
+      <View style={{flexDirection: 'row'}}>
+        <Text style={todoItem.complete ? {textDecorationLine: 'line-through'} : {textDecorationLine: 'none'}}>
+          {todoItem.context}
+        </Text>
+        <TouchableOpacity onPress={this.completeTodo.bind(this.props.todoApp, index)}>
+          <Text>{todoItem.complete ? "---complete" : "---incomplete" }</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.deleteTodo.bind(this.props.todoApp, index)}>
+          <Text>     delete </Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}
+
+class gitbookTest2 extends Component {
   componentWillMount() {
     this.setState({
       inputText: '',
@@ -20,7 +58,10 @@ class ReactTutorial extends Component {
   }
 
   addTodo() {
-    let todoItem = this.state.inputText
+    let todoItem = {
+      context: this.state.inputText,
+      complete: false
+    }
     let todos = this.state.todos
     todos.push(todoItem)
     this.setState({
@@ -33,24 +74,23 @@ class ReactTutorial extends Component {
     return (
       <View style={styles.container}>
         <TextInput
-          style={{height: 40, backgroundColor: 'gray', borderWidth: 1}}
+          style={{height: 40,borderColor: 'gray', borderWidth: 1}}
           onChangeText={(text) => {
             this.setState({inputText: text})
           }}
           value={this.state.inputText}
-        />
-        { /* 어떤 함수를 실행할지 */ }
+          />
         <TouchableOpacity onPress={this.addTodo.bind(this)}>
           <Text>
-            Add Todo
+            add Todo
           </Text>
         </TouchableOpacity>
         {
-          this.state.todos.map((todoItem, index) => {
+          this.state.todos.map((todoItem, index)=> {
+            console.log(todoItem)
+            console.log(index)
             return (
-              <Text key={index}>  { /* 리스트의 key 를 index로 설정 */ }
-                {todoItem}  { /* index 번째 element */ }
-              </Text>
+              <TodoItem item={todoItem} key={index} index={index} todoApp={this}/>
             )
           })
         }
@@ -68,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('ReactTutorial', () => ReactTutorial);
+AppRegistry.registerComponent('gitbookTest2', () => gitbookTest2);
