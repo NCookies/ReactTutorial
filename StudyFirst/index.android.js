@@ -49,7 +49,7 @@ class TodoItem extends Component {
   }
 }
 
-class gitbookTest2 extends Component {
+class ReactTutorial extends Component {
   componentWillMount() {
     this.setState({
       inputText: '',
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('gitbookTest2', () => gitbookTest2);
+AppRegistry.registerComponent('ReactTutorial', () => ReactTutorial);
