@@ -12,8 +12,23 @@ class AsyncApp extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     const { dispatch, selectedReddit } = this.props;
+    // this.props에는 selectedReddit, posts, dispatch 등의 다양한 속성이 있음
+    // 변수를 선언할 때 {} 를 사용하면 dict 처럼 같은 변수에 할당됨
+    // 위에 경우, dispath, selectedReddit에 this.props에 각각 해당하는 값이 들어감
+    // var, let, const에 상관없이 모두 같음
+
     dispatch(fetchPostsIfNeeded(selectedReddit));
+    // /* action을 return 받아서 dispatch를 통해 reducer에 action을 날림 */
+    // 위 주석은 잘못된 내용임.
+    // dispatch란 action을 통해 store에 날려서 어떤 변화가 일어나야할지 알려주는 역할
+    // 그리고 store에서는 dispatch를 통해 보내진 action으로 어떤 reducer를 사용해야하는지 선택함
+
+    // 이 부분은 mapDispatchToProps를 통해 대체할 수 있을 듯
+
+    // selectedReddit은 아마 reddit의 주제인 것 같음
+    // 여기서는 frontend와 reactjs가 있음
   }
 
   componentWillReceiveProps(nextProps) {
