@@ -1,14 +1,16 @@
 import fetch from 'isomorphic-fetch';
 
+// 액션 타입
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const SELECT_REDDIT = 'SELECT_REDDIT';
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT';
 
+// 액션 생성자
 export function selectReddit(reddit) {
   return {
     type: SELECT_REDDIT,
-    reddit
+    reddit  // reddit 주제 (reactjs, frontend)
   };
 }
 
@@ -35,9 +37,6 @@ function receivePosts(reddit, json) {
   };
 }
 
-// 썽크 미들웨어는 함수를 어떻게 다룰지 알고 있습니다.
-// 미들웨어는 디스패치 메서드를 함수에 인수로 보내서,
-// 함수가 직접 액션을 보낼 수 있도록 합니다.
 // 즉, fetchPosts와 fetchPostsIfNeeded는 thunk임
 function fetchPosts(reddit) {   // 비동기 통신은 reducer가 아니라 action에서 처리하는건가?
                                 // 그런 듯
@@ -54,6 +53,7 @@ function fetchPosts(reddit) {   // 비동기 통신은 reducer가 아니라 acti
 }
 
 /*
+복잡도를 줄이기 위한 helper 함수임
 reddit으로부터 데이터를 얻어와야 하는지 판별하는 함수
 덕분에 불피요한 통신을 줄일 수 있음
 그렇기 때문에 reacjs와 frontend를 모두 선택하면 네트워크 통신이 발생하지 않음
@@ -86,6 +86,13 @@ export function fetchPostsIfNeeded(reddit) {    // reddit: frontend OR reactjs
                                     // getState는 아마 상태 트리를 반환하는 함수일 듯
     if (shouldFetchPosts(getState(), reddit)) { // 이전에 받아온 데이터가 없거나 갱신이 필요할 때
       return dispatch(fetchPosts(reddit));
+      /*
+      Any return value from the inner function will be available
+      as the return value of dispatch itself.
+      This is convenient for orchestrating an asynchronous control flow
+      with thunk action creators dispatching each other and
+      returning Promises to wait for each other’s completion
+      */
     }
   };
 }

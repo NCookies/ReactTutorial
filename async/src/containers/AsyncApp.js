@@ -32,6 +32,7 @@ class AsyncApp extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // 상태값이 바뀐다면
     if (nextProps.selectedReddit !== this.props.selectedReddit) {
       const { dispatch, selectedReddit } = nextProps;
       dispatch(fetchPostsIfNeeded(selectedReddit));
@@ -46,8 +47,8 @@ class AsyncApp extends Component {
     e.preventDefault();
 
     const { dispatch, selectedReddit } = this.props;
-    dispatch(invalidateReddit(selectedReddit));
-    dispatch(fetchPostsIfNeeded(selectedReddit));
+    dispatch(invalidateReddit(selectedReddit)); // didInvalidate를 true로 설정함
+    dispatch(fetchPostsIfNeeded(selectedReddit));   // 무조건 데이터를 fetch 해야함
   }
 
   render () {
